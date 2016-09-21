@@ -29,3 +29,19 @@ delete '/questions/:id' do
     redirect '/questions'
   end
 end
+
+post "/questions/:question_id/answers" do
+  @question = Question.find_by(id: params[:question_id])
+  @answer = Answer.new(params[:answer])
+  if @answer.save
+    @question.answers << @answer
+    if request.xhr?
+      erb :'answers/_show', locals: {answer: answer}
+    else
+    redirect "/questions/#{@question.id}"
+  end
+  else
+    @errors = @answer.errors.full_message
+    erb :'questions/show'
+  end
+end
