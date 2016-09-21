@@ -1,0 +1,8 @@
+<div class="container">
+    <h1><%= @question.title %></h1>
+    <p><%= @question.body %></p>
+    <form method="post", action= "<%="/questions/#{@question.id}" %>">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete question">
+    </form>
+</div>

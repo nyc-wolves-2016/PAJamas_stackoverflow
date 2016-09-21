@@ -1,0 +1,12 @@
+<div class="container">
+  <% @questions.each do |question| %>
+    <ul class ="questions">
+      <li id="<%= question.id %>"><a href=" <%= "/questions/#{question.id}" %>"><%= question.title %></a></br>
+        <form method="post", class ="delete_question", action=" <%= "/questions/#{question.id}" %>" >
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete question">
+        </form>
+      </li>
+    </ul>
+  <% end %>
+</div>
