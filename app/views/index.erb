@@ -33,14 +33,12 @@
   </tr>
   <% @questions.each do |question| %>
   <tr>
-    <td colspan="2"><%=question.votes.count%></td>
-    <td colspan="2"><%=question.answers.count%></td>
-    <td><%=question.body%>FDdaffafafsfsfaesfeafsefsefsafsaefsefsaefsa</td>
+    <td rowspan="2"><%=question.votes.count%></td>
+    <td rowspan="2"><%=question.answers.count%></td>
+    <td class="question_table"><%=question.body%></td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td>This is a test.</td>
+
     <td>Last Updated By:</td>
   </tr>
     <% end %>

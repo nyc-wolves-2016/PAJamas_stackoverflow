@@ -31,3 +31,7 @@ header li {
 table, th, td {
   border: 1px solid black;
 }
+
+.question_table {
+  height: 2em;
+}
