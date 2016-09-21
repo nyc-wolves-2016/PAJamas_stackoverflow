@@ -11,3 +11,9 @@ post "/questions/:question_id/answers" do
 		erb :'questions/show'
 	end
 end
+
+# this is for testing
+get "/questions/:question_id" do
+	@question = Question.find_by(id: params[:question_id])
+	erb :'questions/show'
+end

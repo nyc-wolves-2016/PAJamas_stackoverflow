@@ -1,4 +1,5 @@
 
+
 <div class="container">
     <h1><%= @question.title %></h1>
     <p><%= @question.body %></p>
@@ -11,8 +12,9 @@
 <%= erb :'questions/_errors', local: {errors: @errors} %>
 
 
+
 <textarea rows="12" cols="80" name="answer[body]" form="newAnswer"></textarea>
-<form id="newAnswer" action="/questions/<%=question.id%>/answers" method="post">
+<form id="newAnswer" action="/questions/<%=@question.id%>/answers" method="post">
 	<input type="hidden" name="answer[answerer_id]" value="<%=current_user.id%>">
 	<input type="submit" >
 </form>
