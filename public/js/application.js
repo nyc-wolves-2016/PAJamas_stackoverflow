@@ -14,4 +14,18 @@ $(document).ready(function() {
       $('#'+id).remove();
     });
   });
+	$('.newAnswer').submit(function(){
+		event.preventDefault();
+		var thisForm = this
+		var answerData = (this).serialize();
+		var path = (this).attr('action');
+		$.ajax({
+			method: 'post',
+			url: path,
+			data: answerData,
+		}).done(function(response) {
+			$('.answerDisplay').append(response);
+			$(thisForm).val("")
+		});
+	});
 });
