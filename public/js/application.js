@@ -28,4 +28,16 @@ $(document).ready(function() {
 			$(thisForm).val("")
 		});
 	});
+	$('.answerDisplay').on('submit', "#deleteAnswer", function(){
+		event.preventDefault();
+		var thisForm = this
+		var path = $(this).attr('action');
+		$.ajax({
+			url: path,
+			method: "delete"
+		}).done(function(response) {
+			$(thisForm).closest('#'+response).remove();
+		});
+		
+	})
 });
