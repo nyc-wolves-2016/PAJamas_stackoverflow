@@ -21,10 +21,11 @@
 	
 </div>
 
-
+<% if logged_in? %>
 <textarea rows="12" cols="80" name="answer[body]" form="newAnswer"></textarea>
 <form id="newAnswer" action="/questions/<%=@question.id%>/answers" method="post">
 	<input type="hidden" name="answer[answerer_id]" value="<%=current_user.id%>">
 	<input type="submit" >
 </form>
+<% end %>
 

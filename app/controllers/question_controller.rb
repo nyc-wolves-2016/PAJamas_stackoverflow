@@ -45,3 +45,12 @@ post "/questions/:question_id/answers" do
     erb :'questions/show'
   end
 end
+
+delete "/questions/:question_id/answers/:id" do
+  @question = Question.find_by(id: params[:question_id])
+  @answer = Answer.find_by(id: params[:id])
+  @answer.destroy
+  if request.xhr?
+    "#{@answer.id}"
+  end
+end

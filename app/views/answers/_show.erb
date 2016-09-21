@@ -3,4 +3,10 @@
 	    <span class='username'><%= answer.answerer.username %>: </span>
 	    <%= answer.body %>
 	  </p>
+	  <% if owns_answer?(answer) %>
+		  <form id="deleteAnswer" method="post", action= "<%="/questions/#{@question.id}/answers/#{answer.id}" %>">
+	      <input type="hidden" name="_method" value="delete">
+	      <input type="submit" value="Delete answer">
+	    </form>
+	  <% end %>
 </article>
