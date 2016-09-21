@@ -4,9 +4,9 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :answerers, through: :answers, source: :answerer
   has_many :commenters, through: :comments, source: :commenter
-  belongs_to :asker, class_name: "User"
+  belongs_to :asker, class_name: "User", foreign_key: :asker_id
 
   validates :title, presence: true
   validates :asker_id, presence: true
-    
+
 end
