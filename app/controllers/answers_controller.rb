@@ -5,4 +5,9 @@ post "/questions/:question_id/answers" do
 		@question.answers << @answer
 		current_user.answers << @answer
 		current_user.users_helped << @question.asker
+		redirect "/questions/#{@question.id}"
+	else
+		@errors = @answer.errors.full_message
+		erb :'questions/show'
+	end
 end
