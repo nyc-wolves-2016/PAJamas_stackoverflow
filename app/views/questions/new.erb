@@ -1,0 +1,10 @@
+<div class="container">
+  <%= erb :'questions/_errors' %>
+  <form method="post", action="/questions">
+    <label>Title:</label></br>
+    <input type="text" name="question[title]" placeholder="Title"></br>
+    <label>Your question:</label></br>
+    <textarea type="text" name="question[body]"></textarea></br>
+    <input type="submit" value="Post question">
+  </form>
+</div>
