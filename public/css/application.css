@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body,
+html {
+		height: 100%;
+}
+
+#login_form {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  width: 60%;
+  margin: auto;
+}
+
+header {
+  float: right;
+}
+
+header li {
+  list-style: none;
+  display: inline;
+}
+
+table, th, td {
+  border: 1px solid black;
+}

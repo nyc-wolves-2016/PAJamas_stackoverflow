@@ -1,0 +1,48 @@
+<% if logged_in? %>
+<h1>Hi, <%=@user.username %>, welcome to PAJamas StackOverflow.</h1>
+
+<% else %>
+
+<container id="login_form">
+  <h1>Create an Account:</h1>
+
+  <form class="" action="users/new" method="post">
+    <label for="username">Username:</label></br>
+    <input type="username" name="user[username]" value=""></br></br>
+
+    <label for="email">Email:</label></br>
+    <input type="email" name="user[email]" value=""></br></br>
+
+    <label for="password">Password:</label></br>
+    <input type="password" name="user[password]" value=""></br></br>
+
+    <input class="button" type="submit" value="Log In">
+  </form>
+
+  <h2>Already have an account? <a href='/sessions/new'>Log in here.</a></h2>
+</container>
+
+<% end %>
+
+<% if @questions %>
+<table>
+  <tr>
+    <th>Votes</th>
+    <th>Answers</th>
+    <th>Question</th>
+  </tr>
+  <% @questions.each do |question| %>
+  <tr>
+    <td colspan="2"><%=question.votes.count%></td>
+    <td colspan="2"><%=question.answers.count%></td>
+    <td><%=question.body%>FDdaffafafsfsfaesfeafsefsefsafsaefsefsaefsa</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>This is a test.</td>
+    <td>Last Updated By:</td>
+  </tr>
+    <% end %>
+</table>
+<% end %>
