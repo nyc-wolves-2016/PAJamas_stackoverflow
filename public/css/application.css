@@ -114,3 +114,8 @@ form.quirks {
 .questions {
   list-style-type: none
 }
+
+.username {
+	font-style: italic;
+	font-size: 80%;
+}

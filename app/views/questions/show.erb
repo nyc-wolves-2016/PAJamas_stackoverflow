@@ -1,3 +1,5 @@
+
+
 <div class="container">
     <h1><%= @question.title %></h1>
     <p><%= @question.body %></p>
@@ -6,3 +8,23 @@
       <input type="submit" value="Delete question">
     </form>
 </div>
+
+<%= erb :'questions/_errors', local: {errors: @errors} %>
+
+
+<div class="answerDisplay">
+	<h2>	<%= @question.answers.count %> Answer(s) </h2>
+	
+	<% @question.answers.each do |answer| %>
+		<%= erb :'answers/_show', locals: {answer: answer} %>
+	<% end %>
+	
+</div>
+
+
+<textarea rows="12" cols="80" name="answer[body]" form="newAnswer"></textarea>
+<form id="newAnswer" action="/questions/<%=@question.id%>/answers" method="post">
+	<input type="hidden" name="answer[answerer_id]" value="<%=@user.id%>">
+	<input type="submit" >
+</form>
+

@@ -7,6 +7,6 @@ class Answer < ActiveRecord::Base
 
   validates :body, presence: true
   validates :answerer_id, presence: true
-  validates :question_id, presence: true
+  # validates :question_id, presence: true
   validates :best_status, numericality: { only_integer: true }
 end
