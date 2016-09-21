@@ -25,5 +25,7 @@ end
 delete '/questions/:id' do
   question = Question.find(params[:id])
   question.destroy
-  redirect '/questions'
+  if !request.xhr?
+    redirect '/questions'
+  end
 end
