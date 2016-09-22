@@ -1,28 +1,28 @@
 <article id="<%= answer.id %>">
-	  <span class='username'><%= answer.answerer.username %>: </span>
-		<p><%= answer.body %></p>
-		<% if logged_in? %>
-	  	<form method="post" action='/questions/<%= @question.id %>/answers/<%= answer.id %>/vote'>
-	      <input type="hidden" name="vote" value="upvote">
-	  		<button type="submit" class="vote-up"></button>
-			</form>
-	    <%= answer.total_votes %>
-			<form method="post" action='/questions/<%= @question.id %>/answers/<%= answer.id %>/vote'>
-	      <input type="hidden" name="vote" value="downvote">
-	  		<button type="submit" class="vote-down"></button>
-			</form>
-	  <% end %>
-		<% if owns_question?(@question) && !@question.has_best_answer? %>
-		<form id="best_answer" method="post", action="<%="/questions/#{@question.id}/answers/#{answer.id}"%>">
-			<input type="hidden" name="_method" value="put">
-			<input type="submit" value="Mark as Best Answer">
-		</form>
-		</br>
-		<% end %>
-		<% if owns_answer?(answer) %>
-		<form id="deleteAnswer" method="post", action= "<%="/questions/#{@question.id}/answers/#{answer.id}" %>">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete answer">
-		  </form>
+	<% if @to_edit == answer.id %>
+		<%= erb :'/answers/_edit_answer' %>
+	<% else %>
+		  <span class='username'><%= answer.answerer.username %>: </span>
+			<p><%= answer.body %></p>
+
+				<% if owns_question?(@question) && !@question.has_best_answer? %>
+				<form id="best_answer" method="post", action="<%="/questions/#{@question.id}/answers/#{answer.id}"%>">
+					<input type="hidden" name="_method" value="put">
+					<input type="submit" value="Mark as Best Answer">
+				</form>
+				</br>
+				<% end %>
+
+				<% if owns_answer?(answer) %>
+				<form id="deleteAnswer" method="post", action= "<%="/questions/#{@question.id}/answers/#{answer.id}" %>">
+		      <input type="hidden" name="_method" value="delete">
+		      <input type="submit" value="Delete Answer">
+				  </form>
+				</br>
+					<form id="EditAnswer"  method="post" action= "<%="/questions/#{@question.id}/answers/#{answer.id}/edit" %>">
+						<input type="hidden" name="_method" value="get">
+						<input type="submit" value="Edit Answer" >
+					</form>
+				<% end %>
 		<% end %>
 </article>
