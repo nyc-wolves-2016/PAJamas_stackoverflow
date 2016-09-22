@@ -5,6 +5,7 @@
     <input type="text" name="question[title]" placeholder="Title"></br>
     <label>Your question:</label></br>
     <textarea type="text" name="question[body]"></textarea></br>
+    <input type="hidden" name="question[asker_id]" value="<%=current_user.id%>">
     <input type="submit" value="Post question">
   </form>
 </div>

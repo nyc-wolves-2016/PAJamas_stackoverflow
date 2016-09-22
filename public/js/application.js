@@ -9,8 +9,8 @@ $(document).ready(function() {
     $.ajax({
       url: $(event.target).attr('action'),
       method: "delete"
-    }).done(function(){
-      var id = $(event.target).closest('li').attr('id')
+    }).done(function(response){
+      var id = response
       $('#'+id).remove();
     });
   });

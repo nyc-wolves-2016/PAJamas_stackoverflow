@@ -14,6 +14,7 @@ post '/questions' do
 end
 
 get '/questions/new' do
+  require_login
   erb :'questions/new'
 end
 
@@ -25,7 +26,9 @@ end
 delete '/questions/:id' do
   question = Question.find(params[:id])
   question.destroy
-  if !request.xhr?
+  if request.xhr?
+    "#{question.id}"
+  else
     redirect '/questions'
   end
 end
