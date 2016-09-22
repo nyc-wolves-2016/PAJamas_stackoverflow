@@ -1,29 +1,35 @@
-<div class="container">
-    <h1><%= @question.title %></h1>
-    <h6>Asked by <%= @question.asker.username %> at <%=@question.created_at %></h6>
-    <p><%= @question.body %></p>
-    <% if logged_in? %>
-      <form method="post" action='/questions/<%= @question.id %>/vote'>
-        <input type="hidden" name="vote" value="upvote">
-        <button type="submit" class="vote-up"></button>
-      </form>
-      <%= @question.total_votes %>
-      <form method="post" action='/questions/<%= @question.id %>/vote'>
-        <input type="hidden" name="vote" value="downvote">
-        <button type="submit" class="vote-down"></button>
-      </form>
-    <% end %>
+<div class="container q">
+  <h1><%= @question.title %></h1>
+  <h6>Asked by <%= @question.asker.username %> at <%=@question.created_at %></h6>
 
-    <div class="commentDisplay">
+    <div class="single_question">
+      <p><%= @question.body %></p>
+    </div>
+    <div class="vote_buttons">
+      <% if logged_in? %>
+        <form method="post" class="vote-up" action='/questions/<%= @question.id %>/vote'>
+          <input type="hidden" name="vote" value="upvote">
+          <button type="submit" ></button>
+        </form>
+        <%= @question.total_votes %>
+        <form method="post" class="vote-down" action='/questions/<%= @question.id %>/vote'>
+          <input type="hidden" name="vote" value="downvote">
+          <button type="submit"></button>
+        </form>
+      <% end %>
+    </div>
+</div>
+
+    <div class="comment_display question_comment">
       <% @question.comments.each do |comment| %>
         <%= erb :'comments/_show', locals: { commentable: @question, comment: comment} %>
-
-        <% end %>
+      <% end %>
     </div>
     <% if logged_in? &&!@to_edit %>
     
       <%= erb :'comments/_new', locals: { commentable: @question } %>
     <% end %>
+
     <% if owns_question?(@question) %>
 			<form method="post", action=" <%= "/questions/#{@question.id}" %>" >
           <input type="hidden" name="_method" value="delete">
@@ -32,10 +38,6 @@
 	    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
 	  <% end %>
 
-
-
-
-</div>
 
 <%= erb :'_errors', local: {errors: @errors} %>
 

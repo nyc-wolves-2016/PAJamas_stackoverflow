@@ -18,25 +18,32 @@
   <title></title>
 </head>
 <body>
-  <div class="nav_menu">
-    <div class="burger_button" id="burger_button">
-      <div></div>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="responsive_burger_button">
-      <ul>
-        <li><a href='/'>Home</a></li>
-        <% if logged_in? %>
-        <li><a href='/users/:id'><%= current_user.username %></a></li>
-        <li><a href='/sessions/logout'>Logout</a></li>
-        <% else %>
-        <li><a href='/sessions/new'>Log In</a></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <header class="layout">
+
+    <nav>
+
+      <div class="burger_button" id="burger_button">
+        <div></div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="responsive_burger_button">
+        <ul>
+          <li><a href='/'>Home</a></li>
+          <% if logged_in? %>
+          <li><a href='/users/:id'><%= current_user.username %></a></li>
+          <li><a href='/sessions/logout'>Logout</a></li>
+          <% else %>
+          <li><a href='/sessions/new'>Log In</a></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </nav>
+    <h1>PajamasOverflow</h1>
+  </header>
   <%= yield %>
 </body>
 </html>

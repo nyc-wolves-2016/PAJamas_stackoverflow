@@ -1,39 +1,41 @@
-<% if logged_in? %>
-  <h1>Hi, <%=@user.username %>, welcome to PAJamas StackOverflow.</h1>
+<div class="container">
+  <% if logged_in? %>
+    <h2>Welcome, <%=@user.username %>!</h2>
 
-  <% if @user_questions %>
-    <div class="my_questions">
-      <% @user_questions.each do |question| %>
-        <% erb :'questions/_single_question_show', locals: { question: question } %>
+    <% if @user_questions %>
+      <div class="my_questions">
+        <% @user_questions.each do |question| %>
+          <% erb :'questions/_single_question_show', locals: { question: question } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+
+    <container id="login_form">
+      <div class="home_buttons">Create an Account:</div>
+
+      <form class="new_user" action="/users/new" method="post">
+        <label for="username">Username:</label></br>
+        <input type="username" name="user[username]" value=""></br></br>
+
+        <label for="email">Email:</label></br>
+        <input type="email" name="user[email]" value=""></br></br>
+
+        <label for="password">Password:</label></br>
+        <input type="password" name="user[password]" value=""></br></br>
+
+        <input class="button" type="submit" value="Register">
+      </form>
+
+      <h2>Already have an account? <a href='/sessions/new'>Log in here.</a></h2>
+    </container>
+  <% end %>
+
+  <% if @questions %>
+    <div id="top_questions">
+      <% @questions.each do |question| %>
+        <%= erb :'questions/_single_question_show', locals: { question: question } %>
       <% end %>
     </div>
   <% end %>
-<% else %>
-
-  <container id="login_form">
-    <div class="home_buttons">Create an Account:</div>
-
-    <form class="new_user" action="/users/new" method="post">
-      <label for="username">Username:</label></br>
-      <input type="username" name="user[username]" value=""></br></br>
-
-      <label for="email">Email:</label></br>
-      <input type="email" name="user[email]" value=""></br></br>
-
-      <label for="password">Password:</label></br>
-      <input type="password" name="user[password]" value=""></br></br>
-
-      <input class="button" type="submit" value="Register">
-    </form>
-
-    <h2>Already have an account? <a href='/sessions/new'>Log in here.</a></h2>
-  </container>
-<% end %>
-
-<% if @questions %>
-  <div id="top_questions">
-    <% @questions.each do |question| %>
-      <%= erb :'questions/_single_question_show', locals: { question: question } %>
-    <% end %>
-  </div>
-<% end %>
+</div>
