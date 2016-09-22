@@ -9,4 +9,8 @@ class Question < ActiveRecord::Base
   validates :title, presence: true
   # validates :asker_id, presence: true
 
+  def has_best_answer?
+    self.answers.any? { |answer| answer.best_status == 1}
+  end
+
 end
