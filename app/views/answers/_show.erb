@@ -1,4 +1,5 @@
 <article id="<%= answer.id %>">
+<<<<<<< c57d9cff3c1879b429e1a5bda0d820623b32e93b
 	  <span class='username'><%= answer.answerer.username %>: </span>
 		<p><%= answer.body %></p>
 		<% if logged_in? %>
@@ -24,5 +25,33 @@
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete answer">
 		  </form>
+=======
+	<% if @to_edit == answer.id %>
+		<%= erb :'/answers/_edit_answer' %>
+	<% else %>
+		  <span class='username'><%= answer.answerer.username %>: </span>
+			<p><%= answer.body %></p>
+
+				<% if owns_question?(@question) && !@question.has_best_answer? %>
+				<form id="best_answer" method="post", action="<%="/questions/#{@question.id}/answers/#{answer.id}"%>">
+					<input type="hidden" name="_method" value="put">
+					<input type="submit" value="Mark as Best Answer">
+				</form>
+				</br>
+				<% end %>
+
+				<% if owns_answer?(answer) %>
+				<form id="deleteAnswer" method="post", action= "<%="/questions/#{@question.id}/answers/#{answer.id}" %>">
+		      <input type="hidden" name="_method" value="delete">
+		      <input type="submit" value="Delete Answer">
+				  </form>
+				</br>
+					<form id="EditAnswer"  method="post" action= "<%="/questions/#{@question.id}/answers/#{answer.id}/edit" %>">
+						<input type="hidden" name="_method" value="get">
+						<input type="submit" value="Edit Answer" >
+					</form>
+				<% end %>
+
+>>>>>>> Refactor Answer Partial to allow for Editing Form with Condition
 		<% end %>
 </article>

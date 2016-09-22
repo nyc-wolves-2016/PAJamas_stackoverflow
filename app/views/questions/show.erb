@@ -33,14 +33,12 @@
 	<% @question.answers.each do |answer| %>
 		<%= erb :'answers/_show', locals: {answer: answer} %>
 	<% end %>
-
 </div>
 
-<% if logged_in? %>
+<% if logged_in? && !@to_edit  %>
 <textarea rows="12" cols="80" name="answer[body]" form="newAnswer"></textarea>
 <form id="newAnswer" action="/questions/<%=@question.id%>/answers" method="post">
 	<input type="hidden" name="answer[answerer_id]" value="<%=current_user.id%>">
 	<input type="submit" >
 </form>
 <% end %>
-

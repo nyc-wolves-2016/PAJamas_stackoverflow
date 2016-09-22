@@ -1,0 +1,5 @@
+<textarea rows="12" cols="80" name="body" form="editAnswer"><%=@answer.body%></textarea>
+<form id="editAnswer" action="/questions/<%=@question.id%>/answers/<%=@answer.id%>/edit" method="post">
+	<input type="hidden" name="_method" value="put">
+	<input type="submit" value="Submit Edited Response" >
+</form>
