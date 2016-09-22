@@ -181,4 +181,6 @@ form.quirks {
 	font-size: 80%;
 }
 
-
+.article_list {
+  border: 1px solid black;
+}
