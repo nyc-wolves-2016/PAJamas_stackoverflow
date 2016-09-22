@@ -1,8 +1,3 @@
-<% if logged_in? %>
-<h1>Hi, <%=@user.username %>, welcome to PAJamas StackOverflow.</h1>
-
-<% else %>
-
 <container id="login_form">
   <h1>Create an Account:</h1>
 
@@ -19,28 +14,7 @@
     <input class="button" type="submit" value="Register">
   </form>
 
+  <%= erb :'_errors' %>
+
   <h2>Already have an account? <a href='/sessions/new'>Log in here.</a></h2>
 </container>
-
-<% end %>
-
-<% if @questions %>
-<table>
-  <tr>
-    <th>Votes</th>
-    <th>Answers</th>
-    <th>Question</th>
-  </tr>
-  <% @questions.each do |question| %>
-  <tr>
-    <td rowspan="2"><%=question.votes.count%></td>
-    <td rowspan="2"><%=question.answers.count%></td>
-    <td class="question_table"><a href="/questions/<%=question.id%>"><%=question.title%></a></td>
-  </tr>
-  <tr>
-
-    <td>Last Updated By:</td>
-  </tr>
-    <% end %>
-</table>
-<% end %>
