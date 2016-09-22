@@ -5,16 +5,16 @@
 		  <span class='username'><%= answer.answerer.username %>: </span>
 			<p><%= answer.body %></p>
 		<% if logged_in? %>
- +	  	<form method="post" action='/questions/<%= @question.id %>/answers/<%= answer.id %>/vote'>
- +	      <input type="hidden" name="vote" value="upvote">
- +	  		<button type="submit" class="vote-up"></button>
- +			</form>
- +	    <%= answer.total_votes %>
- +			<form method="post" action='/questions/<%= @question.id %>/answers/<%= answer.id %>/vote'>
- +	      <input type="hidden" name="vote" value="downvote">
- +	  		<button type="submit" class="vote-down"></button>
- +			</form>
- +	  <% end %>
+ 	  	<form method="post" action='/questions/<%= @question.id %>/answers/<%= answer.id %>/vote'>
+ 	      <input type="hidden" name="vote" value="upvote">
+ 	  		<button type="submit" class="vote-up"></button>
+ 			</form>
+ 	    <%= answer.total_votes %>
+ 			<form method="post" action='/questions/<%= @question.id %>/answers/<%= answer.id %>/vote'>
+ 	      <input type="hidden" name="vote" value="downvote">
+ 	  		<button type="submit" class="vote-down"></button>
+ 			</form>
+ 	  <% end %>
 				<% if owns_question?(@question) && !@question.has_best_answer? %>
 				<form id="best_answer" method="post", action="<%="/questions/#{@question.id}/answers/#{answer.id}"%>">
 					<input type="hidden" name="_method" value="put">
