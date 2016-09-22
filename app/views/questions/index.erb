@@ -1,14 +1,11 @@
 <div class="container">
   <% @questions.each do |question| %>
-    <ul class ="questions">
-      <li id="<%= question.id %>"><a href=" <%= "/questions/#{question.id}" %>"><%= question.title %></a></br>
+    <%= erb :'questions/_single_question_show', locals: { question: question } %>
       <% if current_user == question.asker %>
         <form method="post", class ="delete_question", action=" <%= "/questions/#{question.id}" %>" >
           <input type="hidden" name="_method" value="delete">
           <input type="submit" value="Delete question">
         </form>
       <% end %>
-      </li>
-    </ul>
   <% end %>
 </div>
