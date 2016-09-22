@@ -1,0 +1,6 @@
+<div class="commentForm">
+  <form id="newComment" action="/<%=pathify(commentable)%>/<%=commentable.id%>/comments/new" method="post">
+    <textarea name="comment[body]" rows="8" cols="60" form="newComment"></textarea>
+    <input type="submit" value="Add comment">
+  </form>
+</div>

@@ -97,6 +97,7 @@ put "/questions/:question_id/answers/:id" do
   end
 end
 
+
 post "/questions/:question_id/answers/:id/vote" do
   @question = Question.find(params[:question_id])
   @answer = Answer.find(params[:id])
@@ -121,4 +122,17 @@ put "/questions/:question_id/answers/:id/edit" do
   @answer = Answer.find_by(id: params[:id])
   @answer.update_attributes(body: params[:body])
   erb :'questions/show'
+end
+
+post '/questions/:question_id/comments/new' do
+  @question = Question.find_by(id: params[:question_id])
+  @comment = Comment.new(params[:comment])
+  if @comment.save
+    @question.comments << @comment
+    current_user.comments << @comment
+    redirect "/questions/#{@question.id}"
+  else
+    @errors = @comment.errors.full_message
+    erb :'questions/show'
+  end
 end
