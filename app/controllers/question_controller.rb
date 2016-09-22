@@ -137,11 +137,23 @@ post '/questions/:question_id/comments/new' do
   end
 end
 
+
 delete '/questions/:question_id/comments/:id' do
   @question = Question.find_by(id: params[:question_id])
   @comment = Comment.find_by(id: params[:id])
   @comment.destroy
   redirect "/questions/#{@question.id}"
+end
+
+
+post "/comments/:id/vote" do
+  @comment = Comment.find(params[:question_id])
+  @answer = Answer.find(params[:id])
+  if params[:vote] == "upvote"
+    @answer.votes.create(value: 1, voter_id: current_user.id)
+  elsif params[:vote] == "downvote"
+    @answer.votes.create(value: -1, voter_id: current_user.id)
+  end
 end
 
 

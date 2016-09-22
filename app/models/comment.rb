@@ -8,4 +8,7 @@ class Comment < ActiveRecord::Base
   # validates :commentable_id, presence: true
   # validates :commentable_type, presence: true
 
+  def total_votes
+    self.votes.sum(:value)
+  end
 end
