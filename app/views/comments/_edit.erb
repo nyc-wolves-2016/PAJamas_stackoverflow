@@ -1,0 +1,5 @@
+<form id="editcomment" action="/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>" method="post">
+  <input type="hidden" name="_method" value="put">
+<textarea rows="8" cols="60" name="body"><%=comment.body%></textarea>
+  <input type="submit" value="edit comment" >
+</form>
