@@ -39,11 +39,20 @@ $(document).ready(function() {
 			$(thisForm).closest('#'+response).remove();
 		});
 
-	})
+	});
   $('.burger_button').on('click', function(event){
     $('.responsive_burger_button').toggleClass('expand')
-  })
-
+  });
+  $('.container').submit('.newComment', function(){
+    event.preventDefault();
+    var path = $('.newComment').attr('action');
+    $.ajax({
+      method: 'get',
+      url: path,
+    }).done(function(response) {
+      $('.commentForm').append(response);
+    });
+  });
 
 
 

@@ -124,7 +124,18 @@ put "/questions/:question_id/answers/:id/edit" do
   erb :'questions/show'
 end
 
-post '/questions/:question_id/comments/new' do
+get '/questions/:question_id/comments/new' do
+  @question = Question.find_by(id: params[:question_id])
+  if request.xhr?
+    erb :'comments/_new', locals: {commentable: @question}, layout: false
+  else
+  @new_comment = true
+  erb :'questions/show'
+  end
+end
+
+
+post '/questions/:question_id/comments' do
   @question = Question.find_by(id: params[:question_id])
   @comment = Comment.new(params[:comment])
   if @comment.save

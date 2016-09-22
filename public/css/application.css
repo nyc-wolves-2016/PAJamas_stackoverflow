@@ -1,3 +1,4 @@
+
 body {
   width: 900px;
   margin: 0 auto;
@@ -214,6 +215,9 @@ header {
 }
 
 
+
+
+
 .nav_menu {
   float: right;
   margin-right: 5%;
@@ -354,6 +358,11 @@ form.quirks {
   width: 200px;
 }
 
+
+.username {
+  font-style: italic;
+  font-size: 80%;
+}
 
 
 .article_list {
