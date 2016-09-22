@@ -13,9 +13,13 @@
           <% end %>
     <p><%= comment.body %></p>
     <% if owns_comment?(comment) %>
-    <form class="deleteComment" method="post", action= "/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete comment">
+      <form class="deleteComment" method="post", action= "/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete comment">
+      </form>
+      <form id="editComment"  method="post" action= "/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>"">
+        <input type="hidden" name="_method" value="put">
+        <input type="submit" value="Edit comment" >
       </form>
     <% end %>`
 </article>`
