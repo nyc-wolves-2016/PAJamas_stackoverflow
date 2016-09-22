@@ -126,10 +126,11 @@ end
 
 post '/questions/:question_id/comments/new' do
   @question = Question.find_by(id: params[:question_id])
-  @comment = Comment.new(params[:comments])
+  @comment = Comment.new(params[:comment])
   if @comment.save
     @question.comments << @comment
-    redirect '/questions/#{question.id}'
+    current_user.comments << @comment
+    redirect "/questions/#{@question.id}"
   else
     @errors = @comment.errors.full_message
     erb :'questions/show'
