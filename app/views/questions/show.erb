@@ -3,6 +3,7 @@
     <p><%= @question.body %></p>
 
 
+
     <% if logged_in? %>
       <%= erb :'comments/_new' locals: { commentable: @question } %>
     <% end %>
