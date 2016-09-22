@@ -13,9 +13,19 @@
           <% end %>
     <p><%= comment.body %></p>
     <% if owns_comment?(comment) %>
-    <form class="deleteComment" method="post", action= "/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete comment">
+      <form class="deleteComment" method="post", action= "/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete comment">
       </form>
-    <% end %>`
-</article>`
+
+      <form id="editCommentButton"  method="get" action= "/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>/edit">
+            <input type="submit" value="Edit comment" >
+          </form>
+
+    <% if @to_edit == comment.id %>
+      <%= erb :'comments/_edit', locals: {commentable: commentable, comment: comment} %>
+    <% end %>
+
+    <% end %>
+</article>
+

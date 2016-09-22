@@ -20,3 +20,18 @@ delete '/answers/:answer_id/comments/:id' do
   @comment.destroy
   redirect "/questions/#{@question.id}"
 end
+
+get "/answers/:answer_id/comments/:id/edit" do
+  @answer = Answer.find_by(id: params[:answer_id])
+  @question = @answer.question
+  @to_edit = Comment.find_by(id: params[:id]).id
+  erb :'questions/show'
+end
+
+put "/answers/:answer_id/comments/:id" do
+  @answer = Answer.find_by(id: params[:answer_id])
+  @question = @answer.question
+  @comment = Comment.find_by(id: params[:id])
+  @comment.update_attributes(body: params[:body])
+  erb :'questions/show'
+end
