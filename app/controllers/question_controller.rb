@@ -30,6 +30,22 @@ delete '/questions/:id' do
   end
 end
 
+get '/questions/:id/edit' do
+  @question = Question.find(params[:id])
+  erb :'questions/edit'
+end
+
+put '/questions/:id' do
+  @question = Question.find(params[:id])
+  if @question.update_attributes(params[:question])
+    redirect "/questions/#{@question.id}"
+  else
+    @errors = @question.errors.full_messages
+    @question = Question.find(params[:id])
+    erb :'questions/edit'
+  end
+end
+
 post "/questions/:question_id/answers" do
   @question = Question.find_by(id: params[:question_id])
   @answer = Answer.new(params[:answer])

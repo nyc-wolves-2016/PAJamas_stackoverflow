@@ -1,0 +1,10 @@
+<div class="container">
+	<form method="post", action= "<%="/questions/#{@question.id}" %>">
+		<input type="hidden" name="_method" value="put">
+	  <label>Title:</label></br>
+	  <input type="text" name="question[title]" value="<%= @question.title %>"></br>
+	  <label>Your question:</label></br>
+	  <textarea type="text" name="question[body]" ><%= @question.body %></textarea></br>
+	  <input type="submit" value="Edit question">
+	</form>
+</div>

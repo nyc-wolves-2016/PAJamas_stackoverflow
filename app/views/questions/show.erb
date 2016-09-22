@@ -6,7 +6,10 @@
     <form method="post", action= "<%="/questions/#{@question.id}" %>">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete question">
-    </form>
+    </form> 
+    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
+
+
 </div>
 
 <%= erb :'questions/_errors', local: {errors: @errors} %>

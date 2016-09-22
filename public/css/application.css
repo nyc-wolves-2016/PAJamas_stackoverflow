@@ -1,3 +1,14 @@
+.container {
+  margin: 20px auto;
+  width: 800px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+
+.questions {
+  list-style-type: none
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -34,13 +45,6 @@ table, th, td {
 
 .question_table {
   height: 2em;
-
-.container {
-  margin: 20px auto;
-  width: 800px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-}
 
 .container h1 {
   font-size: 17pt;
@@ -111,9 +115,7 @@ form.quirks {
   width: 200px;
 }
 
-.questions {
-  list-style-type: none
-}
+
 
 .username {
 	font-style: italic;
