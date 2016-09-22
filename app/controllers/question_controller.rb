@@ -58,7 +58,6 @@ end
 put "/questions/:question_id/answers/:id" do
   @question = Question.find_by(id: params[:question_id])
   @answer = Answer.find_by(id: params[:id])
-  binding.pry
   if @question.has_best_answer?
     @errors = ['You have already marked another answer as the Best Answer.']
     erb :'questions/show'
