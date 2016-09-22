@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   belongs_to :asker, class_name: "User", foreign_key: :asker_id
 
   validates :title, presence: true
-  # validates :asker_id, presence: true
+  validates :asker_id, presence: true
 
   def has_best_answer?
     self.answers.any? { |answer| answer.best_status == 1}

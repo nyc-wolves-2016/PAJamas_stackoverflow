@@ -1,12 +1,25 @@
-
-
 <div class="container">
     <h1><%= @question.title %></h1>
     <p><%= @question.body %></p>
-    <form method="post", action= "<%="/questions/#{@question.id}" %>">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete question">
-    </form>
+    <% if current_user == @question.asker %>
+			<form method="post", action=" <%= "/questions/#{@question.id}" %>" >
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete question">
+      </form>
+	    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
+	  <% end %>
+	  <% if logged_in? %>
+	  	<form method="post" action='/questions/<%= @question.id %>/vote'>
+    		<button type="submit" name="vote", value="upvote", class="vote-up"></button>
+  		</form>
+
+  		<form method="post" action='/questions/<%= @question.id %>/vote'>
+    		<button type="submit" name="vote", value="downvote", class="vote-down"></button>
+  		</form>
+	  <% end %>
+
+
+
 </div>
 
 <%= erb :'questions/_errors', local: {errors: @errors} %>

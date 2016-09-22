@@ -14,6 +14,7 @@ post '/questions' do
 end
 
 get '/questions/new' do
+  require_login
   erb :'questions/new'
 end
 
@@ -25,9 +26,37 @@ end
 delete '/questions/:id' do
   question = Question.find(params[:id])
   question.destroy
-  if !request.xhr?
+  if request.xhr?
+    "#{question.id}"
+  else
     redirect '/questions'
   end
+end
+
+get '/questions/:id/edit' do
+  @question = Question.find(params[:id])
+  erb :'questions/edit'
+end
+
+put '/questions/:id' do
+  @question = Question.find(params[:id])
+  if @question.update_attributes(params[:question])
+    redirect "/questions/#{@question.id}"
+  else
+    @errors = @question.errors.full_messages
+    @question = Question.find(params[:id])
+    erb :'questions/edit'
+  end
+end
+
+post '/questions/:id/vote' do
+  question = Question.find(params[:id])
+  if params[:vote] == "upvote"
+    question.votes.create(value: 1)
+  else
+    question.votes.create(value: 1)
+  end
+  redirect "/questions/#{question.id}"
 end
 
 post "/questions/:question_id/answers" do
