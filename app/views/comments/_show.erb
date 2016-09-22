@@ -1,12 +1,12 @@
 <article class="article_list" id="<%= comment.id %>">
     <span class='username'><%= comment.commenter.username %>: </span>
           <% if logged_in? %>
-            <form method="post" action='/comments/<%= comment.id %>/vote'>
+            <form id="comment_up_vote" method="post" action='/comments/<%= comment.id %>/vote'>
               <input type="hidden" name="vote" value="upvote">
               <button type="submit" class="vote-up"></button>
             </form>
-            <%= comment.total_votes %>
-            <form method="post" action='/comments/<%= comment.id %>/vote'>
+    <span id="comment_total"><%= comment.total_votes %></span>
+            <form id="comment_down_vote" method="post" action='/comments/<%= comment.id %>/vote'>
               <input type="hidden" name="vote" value="downvote">
               <button type="submit" class="vote-down"></button>
             </form>

@@ -26,7 +26,7 @@
       <% end %>
     </div>
     <% if logged_in? &&!@to_edit %>
-    
+
       <%= erb :'comments/_new', locals: { commentable: @question } %>
     <% end %>
 

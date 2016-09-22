@@ -154,6 +154,10 @@ header {
   display: block !important;
 }
 
+.home_buttons {
+
+}
+
 #login_form {
   width: 100%;
   margin-left: auto;
