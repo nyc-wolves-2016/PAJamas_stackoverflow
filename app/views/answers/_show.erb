@@ -34,5 +34,14 @@
 						<input type="submit" value="Edit Answer" >
 					</form>
 				<% end %>
+		<div class="commentDisplay">
+      <% answer.comments.each do |comment| %>
+        <%= erb :'comments/_show', locals: { commentable: answer, comment: comment} %>
+        <% end %>
+    </div>
+
+    <% if logged_in? %>
+      <%= erb :'comments/_new', locals: { commentable: answer } %>
+    <% end %>
 		<% end %>
 </article>
