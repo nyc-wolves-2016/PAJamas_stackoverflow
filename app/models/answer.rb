@@ -9,4 +9,9 @@ class Answer < ActiveRecord::Base
   validates :answerer_id, presence: true
   # validates :question_id, presence: true
   validates :best_status, numericality: { only_integer: true }
+
+  def total_votes
+    self.votes.sum(:value)
+  end
+
 end
