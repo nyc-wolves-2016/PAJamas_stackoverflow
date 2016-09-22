@@ -1,6 +1,11 @@
 <div class="container">
     <h1><%= @question.title %></h1>
     <p><%= @question.body %></p>
+
+
+    <% if logged_in? %>
+      <%= erb :'comments/_new' locals: { commentable: @question } %>
+    <% end %>
     <% if owns_question?(@question) %>
 			<form method="post", action=" <%= "/questions/#{@question.id}" %>" >
           <input type="hidden" name="_method" value="delete">
