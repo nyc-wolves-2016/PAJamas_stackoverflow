@@ -1,4 +1,14 @@
-.vote-up {
+body,
+html {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.layout h1 {
+
+}
+
+vote-up {
   background-color: transparent;
   width: 0;
   height: 0;
@@ -34,10 +44,7 @@
 	padding: 0;
 }
 
-body,
-html {
-		height: 100%;
-}
+
 
 .nav_menu {
   float: right;
