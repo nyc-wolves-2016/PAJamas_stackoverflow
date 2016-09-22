@@ -50,13 +50,13 @@ put '/questions/:id' do
 end
 
 post '/questions/:id/vote' do
-  question = Question.find(params[:id])
+  @question = Question.find(params[:id])
   if params[:vote] == "upvote"
-    question.votes.create(value: 1)
-  else
-    question.votes.create(value: 1)
+    @question.votes.create(value: 1, voter_id: current_user.id)
+  elsif params[:vote] == "downvote"
+    @question.votes.create(value: -1, voter_id: current_user.id)
   end
-  redirect "/questions/#{question.id}"
+  redirect "/questions/#{@question.id}"
 end
 
 post "/questions/:question_id/answers" do
