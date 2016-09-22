@@ -97,7 +97,6 @@ put "/questions/:question_id/answers/:id" do
   end
 end
 
-<<<<<<< c57d9cff3c1879b429e1a5bda0d820623b32e93b
 post "/questions/:question_id/answers/:id/vote" do
   @question = Question.find(params[:question_id])
   @answer = Answer.find(params[:id])
@@ -110,10 +109,6 @@ post "/questions/:question_id/answers/:id/vote" do
 end
 
 
-
-
-
-=======
 get "/questions/:question_id/answers/:id/edit" do
   @question = Question.find_by(id: params[:question_id])
   @answer = Answer.find_by(id: params[:id])
@@ -127,4 +122,3 @@ put "/questions/:question_id/answers/:id/edit" do
   @answer.update_attributes(body: params[:body])
   erb :'questions/show'
 end
->>>>>>> Refactor Answer Partial to allow for Editing Form with Condition
