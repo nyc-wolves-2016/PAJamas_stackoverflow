@@ -139,7 +139,9 @@ end
 
 delete '/questions/:question_id/comments/:id' do
   @question = Question.find_by(id: params[:question_id])
-  @comment = Comment.find_by(id: )
+  @comment = Comment.find_by(id: params[:id])
+  @comment.destroy
+  redirect "/questions/#{@question.id}"
 end
 
 
