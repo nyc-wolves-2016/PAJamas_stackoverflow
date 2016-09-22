@@ -13,4 +13,9 @@ class Question < ActiveRecord::Base
     self.answers.any? { |answer| answer.best_status == 1}
   end
 
+  def total_votes
+    self.votes.sum(:value)
+  end
+
+
 end

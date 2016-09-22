@@ -50,13 +50,13 @@ put '/questions/:id' do
 end
 
 post '/questions/:id/vote' do
-  question = Question.find(params[:id])
+  @question = Question.find(params[:id])
   if params[:vote] == "upvote"
-    question.votes.create(value: 1)
-  else
-    question.votes.create(value: 1)
+    @question.votes.create(value: 1, voter_id: current_user.id)
+  elsif params[:vote] == "downvote"
+    @question.votes.create(value: -1, voter_id: current_user.id)
   end
-  redirect "/questions/#{question.id}"
+  redirect "/questions/#{@question.id}"
 end
 
 post "/questions/:question_id/answers" do
@@ -97,3 +97,19 @@ put "/questions/:question_id/answers/:id" do
     redirect "/questions/#{@question.id}"
   end
 end
+
+post "/questions/:question_id/answers/:id/vote" do
+  @question = Question.find(params[:question_id])
+  @answer = Answer.find(params[:id])
+  if params[:vote] == "upvote"
+    @answer.votes.create(value: 1, voter_id: current_user.id)
+  elsif params[:vote] == "downvote"
+    @answer.votes.create(value: -1, voter_id: current_user.id)
+  end
+  redirect "/questions/#{@question.id}"
+end
+
+
+
+
+

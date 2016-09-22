@@ -1,7 +1,7 @@
 <div class="container">
     <h1><%= @question.title %></h1>
     <p><%= @question.body %></p>
-    <% if current_user == @question.asker %>
+    <% if owns_question?(@question) %>
 			<form method="post", action=" <%= "/questions/#{@question.id}" %>" >
           <input type="hidden" name="_method" value="delete">
           <input type="submit" value="Delete question">
@@ -10,11 +10,13 @@
 	  <% end %>
 	  <% if logged_in? %>
 	  	<form method="post" action='/questions/<%= @question.id %>/vote'>
-    		<button type="submit" name="vote", value="upvote", class="vote-up"></button>
+        <input type="hidden" name="vote" value="upvote">
+    		<button type="submit" class="vote-up"></button>
   		</form>
-
+      <%= @question.total_votes %>
   		<form method="post" action='/questions/<%= @question.id %>/vote'>
-    		<button type="submit" name="vote", value="downvote", class="vote-down"></button>
+        <input type="hidden" name="vote" value="downvote">
+    		<button type="submit" class="vote-down"></button>
   		</form>
 	  <% end %>
 
@@ -27,11 +29,11 @@
 
 <div class="answerDisplay">
 	<h2>	<%= @question.answers.count %> Answer(s) </h2>
-	
+
 	<% @question.answers.each do |answer| %>
 		<%= erb :'answers/_show', locals: {answer: answer} %>
 	<% end %>
-	
+
 </div>
 
 <% if logged_in? %>
