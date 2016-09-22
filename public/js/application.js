@@ -43,4 +43,49 @@ $(document).ready(function() {
   $('.burger_button').on('click', function(event){
     $('.responsive_burger_button').toggleClass('expand')
   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $('.new_user').on('submit',function(){
+    event.preventDefault();
+    var path = $(this).attr('action');
+    $.ajax({
+      url:  path,
+      method: 'post'
+    }).done(function(response) {
+    alert(response);
+
+  })
+
+
+  })
+
 });

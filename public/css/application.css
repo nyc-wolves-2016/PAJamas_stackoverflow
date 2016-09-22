@@ -83,6 +83,10 @@ html {
   margin-right: auto;
 }
 
+form.new_user {
+  display: none;
+}
+
 table {
   width: 60%;
   margin: auto;
@@ -169,6 +173,7 @@ form.quirks {
 }
 
 .label {
+  display: none;
   font-weight: bold;
   float: left;
   text-align: right;
