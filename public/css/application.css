@@ -124,12 +124,15 @@ header {
   margin-right: 5%;
 }
 
-.burger_button div {
+.burger_button {
  position: absolute;
- right: 100%;
- top: 50%;
- padding-left: 8px;
+ background: none;
+ right: 0;
+ top: 0;
+ padding-left: 5px 15px 0px 15px;
+ cursor: pointer;
  margin-top: 1em;
+ margin-right: 2em;
  line-height: 1.2;
  font-size: 18px;
  font-weight: 200;
@@ -181,9 +184,10 @@ table {
 
 .responsive_burger_button ul li {
   list-style: none;
+  float: right;
+  clear: both;
   display: block;
   width: 150px;
-  background-color: grey;
   right: 100%;
 }
 
