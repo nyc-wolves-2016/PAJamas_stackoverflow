@@ -146,14 +146,5 @@ delete '/questions/:question_id/comments/:id' do
 end
 
 
-post "/comments/:id/vote" do
-  @comment = Comment.find(params[:question_id])
-  @answer = Answer.find(params[:id])
-  if params[:vote] == "upvote"
-    @answer.votes.create(value: 1, voter_id: current_user.id)
-  elsif params[:vote] == "downvote"
-    @answer.votes.create(value: -1, voter_id: current_user.id)
-  end
-end
 
 

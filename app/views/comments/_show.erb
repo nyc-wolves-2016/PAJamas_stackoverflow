@@ -1,5 +1,16 @@
 <article id="<%= comment.id %>">
     <span class='username'><%= comment.commenter.username %>: </span>
+          <% if logged_in? %>
+            <form method="post" action='/comments/<%= comment.id %>/vote'>
+              <input type="hidden" name="vote" value="upvote">
+              <button type="submit" class="vote-up"></button>
+            </form>
+            <%= comment.total_votes %>
+            <form method="post" action='/comments/<%= comment.id %>/vote'>
+              <input type="hidden" name="vote" value="downvote">
+              <button type="submit" class="vote-down"></button>
+            </form>
+          <% end %>
     <p><%= comment.body %></p>
     <% if owns_comment?(comment) %>
     <form class="deleteComment" method="post", action= "/<%=pathify(commentable)%>/<%=commentable.id%>/comments/<%=comment.id%>">

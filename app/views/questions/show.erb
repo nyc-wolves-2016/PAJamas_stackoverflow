@@ -2,21 +2,22 @@
     <h1><%= @question.title %></h1>
     <h6>Asked by <%= @question.asker.username %> at <%=@question.created_at %></h6>
     <p><%= @question.body %></p>
+    <% if logged_in? %>
+      <form method="post" action='/questions/<%= @question.id %>/vote'>
+        <input type="hidden" name="vote" value="upvote">
+        <button type="submit" class="vote-up"></button>
+      </form>
+      <%= @question.total_votes %>
+      <form method="post" action='/questions/<%= @question.id %>/vote'>
+        <input type="hidden" name="vote" value="downvote">
+        <button type="submit" class="vote-down"></button>
+      </form>
+    <% end %>
 
     <div class="commentDisplay">
       <% @question.comments.each do |comment| %>
         <%= erb :'comments/_show', locals: { commentable: @question, comment: comment} %>
-          <% if logged_in? %>
-            <form method="post" action='/comments/<%= comment.id %>/vote'>
-              <input type="hidden" name="vote" value="upvote">
-              <button type="submit" class="vote-up"></button>
-            </form>
-            <%= comment.total_votes %>
-            <form method="post" action='/questions/<%= comment.id %>/vote'>
-              <input type="hidden" name="vote" value="downvote">
-              <button type="submit" class="vote-down"></button>
-            </form>
-          <% end %>
+
         <% end %>
     </div>
 
@@ -30,17 +31,7 @@
       </form>
 	    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
 	  <% end %>
-	  <% if logged_in? %>
-	  	<form method="post" action='/questions/<%= @question.id %>/vote'>
-        <input type="hidden" name="vote" value="upvote">
-    		<button type="submit" class="vote-up"></button>
-  		</form>
-      <%= @question.total_votes %>
-  		<form method="post" action='/questions/<%= @question.id %>/vote'>
-        <input type="hidden" name="vote" value="downvote">
-    		<button type="submit" class="vote-down"></button>
-  		</form>
-	  <% end %>
+
 
 
 
