@@ -38,6 +38,9 @@ $(document).ready(function() {
 		}).done(function(response) {
 			$(thisForm).closest('#'+response).remove();
 		});
-		
+
 	})
+  $('.burger_button').on('click', function(event){
+    $('.responsive_burger_button').toggleClass('expand')
+  })
 });
