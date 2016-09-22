@@ -1,4 +1,15 @@
-post '/answers/:answer_id/comments/new' do
+get '/answers/:answer_id/comments/new' do
+  @answer = Answer.find_by(id: params[:answer_id])
+  @question = @answer.question
+  if request.xhr?
+    erb :'comments/_new', locals: {commentable: @answer}, layout: false
+  else
+  @new_comment = true
+  erb :'questions/show'
+  end
+end
+
+post '/answers/:answer_id/comments' do
 
   @answer = Answer.find_by(id: params[:answer_id])
   @answer = @answer.question

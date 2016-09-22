@@ -43,8 +43,12 @@
         <%= erb :'comments/_show', locals: { commentable: answer, comment: comment} %>
         <% end %>
     </div>
-
-    <% if logged_in? && !@to_edit%>
+    <form class="newComment" method="get" action="/answers/<%=answer.id%>/comments/new">
+    <button type="submit" class="newCommentButton">Add comment</button>
+    </form>
+    <div class="commentForm">
+    </div>
+    <% if logged_in? && !@to_edit && @new_comment %>
       <%= erb :'comments/_new', locals: { commentable: answer } %>
     <% end %>
 		<% end %>

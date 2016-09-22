@@ -53,6 +53,18 @@ $(document).ready(function() {
       $('.commentForm').append(response);
     });
   });
+   $('.answerDisplay').submit('.newComment', function(){
+    event.preventDefault();
+    var path = $('.newComment').attr('action');
+    var thisButton = event.target
+    $.ajax({
+      method: 'get',
+      url: path,
+    }).done(function(response) {
+      $(thisButton).next().append(response);
+    });
+
+  });
 
 
 
