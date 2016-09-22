@@ -1,12 +1,17 @@
 <article id="<%= answer.id %>">
-	  <p>
-	    <span class='username'><%= answer.answerer.username %>: </span>
-	    <%= answer.body %>
-	  </p>
-	  <% if owns_answer?(answer) %>
-		  <form id="deleteAnswer" method="post", action= "<%="/questions/#{@question.id}/answers/#{answer.id}" %>">
-	      <input type="hidden" name="_method" value="delete">
-	      <input type="submit" value="Delete answer">
-	    </form>
-	  <% end %>
+	  <span class='username'><%= answer.answerer.username %>: </span>
+		<p><%= answer.body %></p>
+		<% if owns_question?(@question) && !@question.has_best_answer? %>
+		<form id="best_answer" method="post", action="<%="/questions/#{@question.id}/answers/#{answer.id}"%>">
+			<input type="hidden" name="_method" value="put">
+			<input type="submit" value="Mark as Best Answer">
+		</form>
+		</br>
+		<% end %>
+		<% if owns_answer?(answer) %>
+		<form id="deleteAnswer" method="post", action= "<%="/questions/#{@question.id}/answers/#{answer.id}" %>">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete answer">
+		  </form>
+		<% end %>
 </article>
