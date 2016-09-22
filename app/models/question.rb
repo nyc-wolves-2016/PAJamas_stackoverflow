@@ -10,7 +10,6 @@ class Question < ActiveRecord::Base
   # validates :asker_id, presence: true
 
   def has_best_answer?
-    binding.pry
     self.answers.any? { |answer| answer.best_status == 1}
   end
 
