@@ -1,5 +1,3 @@
-
-
 <div class="container">
     <h1><%= @question.title %></h1>
     <p><%= @question.body %></p>
@@ -9,6 +7,15 @@
           <input type="submit" value="Delete question">
       </form>
 	    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
+	  <% end %>
+	  <% if logged_in? %>
+	  	<form method="post" action='/questions/<%= @question.id %>/vote'>
+    		<button type="submit" name="vote", value="upvote", class="vote-up"></button>
+  		</form>
+
+  		<form method="post" action='/questions/<%= @question.id %>/vote'>
+    		<button type="submit" name="vote", value="downvote", class="vote-down"></button>
+  		</form>
 	  <% end %>
 
 

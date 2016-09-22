@@ -1,3 +1,23 @@
+.vote-up {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 20px;
+  border-color: transparent transparent #007bff transparent;
+  margin-bottom: 2px;
+}
+
+.vote-down {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 20px 0 20px;
+  border-color: #007bff transparent transparent transparent;
+  margin-top: 2px;
+}
+
 .container {
   margin: 20px auto;
   width: 800px;
@@ -115,9 +135,9 @@ form.quirks {
   width: 200px;
 }
 
-
-
 .username {
 	font-style: italic;
 	font-size: 80%;
 }
+
+

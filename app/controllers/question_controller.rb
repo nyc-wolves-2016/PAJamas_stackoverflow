@@ -49,6 +49,16 @@ put '/questions/:id' do
   end
 end
 
+post '/questions/:id/vote' do
+  question = Question.find(params[:id])
+  if params[:vote] == "upvote"
+    question.votes.create(value: 1)
+  else
+    question.votes.create(value: 1)
+  end
+  redirect "/questions/#{question.id}"
+end
+
 post "/questions/:question_id/answers" do
   @question = Question.find_by(id: params[:question_id])
   @answer = Answer.new(params[:answer])
