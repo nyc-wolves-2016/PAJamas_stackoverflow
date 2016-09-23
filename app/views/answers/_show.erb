@@ -38,12 +38,12 @@
 						<input type="submit" value="Edit Answer" >
 					</form>
 				<% end %>
-		<div class="commentDisplay">
+		<div class="commentDisplay answer_comment">
       <% answer.comments.each do |comment| %>
         <%= erb :'comments/_show', locals: { commentable: answer, comment: comment} %>
         <% end %>
     </div>
-    <form class="newCommentButton" method="get" action="/answers/<%=answer.id%>/comments/new">
+    <form class="newCommentButton answerButton" method="get" action="/answers/<%=answer.id%>/comments/new">
     <button type="submit" >Add comment</button>
     </form>
     <div class="commentForm">
