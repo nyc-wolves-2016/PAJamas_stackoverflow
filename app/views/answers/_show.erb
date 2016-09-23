@@ -4,6 +4,9 @@
 		<%= erb :'/answers/_edit_answer' %>
 	<% else %>
 			<p><%= answer.body %></p>
+			<% if answer.best_status == 1 %>
+				<p style="color: green">This is the best answer!</p>
+			<% end %>
 			<h6>Answered by <%= answer.answerer.username %> </h6>
 	</div>
 	<div class="answer_vote_buttons">
