@@ -131,11 +131,11 @@ $(document).ready(function() {
     $('.new_user').toggleClass('expand')
   });
 
-  $('#login_form').on('click', 'a',function(){
+  $('#login_link').on('click', 'a',function(){
     event.preventDefault();
-    var path = $(this).attr('action');
-    $('.log_in_user').toggleClass('expand')
+    $('log_in_user').toggleClass('.sub_menu')
   });
+
   $('#comment_up_vote').submit(function(event){
     event.preventDefault();
     event.stopPropagation();
@@ -150,6 +150,7 @@ $(document).ready(function() {
     $(thisForm).closest('article').find('#comment_total').text(response);
   });
 });
+
   $('#comment_down_vote').submit(function(event){
     event.preventDefault();
     event.stopPropagation();
