@@ -1,0 +1,20 @@
+<container id="login_form">
+  <h1>Create an Account:</h1>
+
+  <form class="log_in_user" action="/users/new" method="post">
+    <label for="username">Username:</label></br>
+    <input type="username" name="user[username]" value=""></br></br>
+
+    <label for="email">Email:</label></br>
+    <input type="email" name="user[email]" value=""></br></br>
+
+    <label for="password">Password:</label></br>
+    <input type="password" name="user[password]" value=""></br></br>
+
+    <input class="button" type="submit" value="Register">
+  </form>
+
+  <%= erb :'_errors' %>
+
+  <h2>Already have an account? <a href='/sessions/new'>Log in here.</a></h2>
+</container>

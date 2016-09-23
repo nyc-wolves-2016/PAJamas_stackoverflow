@@ -4,12 +4,42 @@ body {
   margin: 0 auto;
 }
 
-header {
-  width: 900px;
+nav {
+  float: right;
+  width: 100%;
+  background-color: black;
+}
+nav ul {
+  list-style: none;
+  /*padding-left: 40%;*/
 }
 
-.layout h1 {
+li {
   width: 100%;
+  line-height: 1.5em;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline;
+  color: white;
+}
+
+li a {
+  color: white;
+}
+
+li a:hover + ul {
+    display: block;
+}
+
+#login_form {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+h1 {
+  clear: right;
   margin: 0 auto;
   padding: 100px 0px 100px 40px;
   background-color: #ffff00;
@@ -21,9 +51,10 @@ header {
   border-radius: 10px;
 }
 
-.layout nav {
-  margin-left: 900px;
+.expand {
+  display: block !important;
 }
+
 
 .container {
   margin: 20px auto;
@@ -223,55 +254,16 @@ header {
   margin-right: 5%;
 }
 
-.burger_button {
- position: absolute;
- background: none;
- right: 0;
- top: 0;
- padding-left: 5px 15px 0px 15px;
- cursor: pointer;
- margin-top: 1em;
- margin-right: 2em;
- line-height: 1.2;
- font-size: 18px;
- font-weight: 200;
- vertical-align: middle;
- z-index: 99;
-}
-
-.burger_button span {
- display: block;
- width: 19px;
- height: 3px;
- margin: 4px 0;
- background: rgb(0,0,0);
- z-index: 99;
-}
-
-.responsive_burger_button {
-  display: none;
-}
-
-.expand {
-  display: block !important;
-}
-
-.home_buttons {
-
-}
-
-#login_form {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 form.new_user {
   display: none;
 }
 
 form.log_in_user {
-  display:  none;
+}
+
+.sub_menu {
+  display: none;
 }
 
 table {
