@@ -141,7 +141,7 @@ post '/questions/:question_id/comments' do
   if @comment.save && request.xhr?
     @question.comments << @comment
     current_user.comments << @comment
-    erb :'comments/_new', locals: {commentable: @question, comment: @comment }, layout: false
+    erb :'comments/_show', locals: {commentable: @question, comment: @comment }, layout: false
   elsif @comment.save
     @question.comments << @comment
     current_user.comments << @comment
