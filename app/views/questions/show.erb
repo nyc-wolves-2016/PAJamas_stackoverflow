@@ -21,30 +21,42 @@
       </div>
     </div>
 
-<div class="comment_display">
-  <% @question.comments.each do |comment| %>
-    <%= erb :'comments/_show', locals: { commentable: @question, comment: comment} %>
-  <% end %>
-</div>
 
-    <% if logged_in? &&!@to_edit %>
 
-      <%= erb :'comments/_new', locals: { commentable: @question } %>
+    <div class="comment_display question_comment">
+      <% @question.comments.each do |comment| %>
+        <%= erb :'comments/_show', locals: { commentable: @question, comment: comment} %>
+      <% end %>
+    </div>
+
+
+    <form class="newCommentButton" method="get" action="/questions/<%=@question.id%>/comments/new">
+    <button type="submit">Add comment</button>
+
+    </form>
+    <div class="commentForm">
+    </div>
+    <% if logged_in? && !@to_edit && @new_comment %>
+      <div class="commentFormHTML">
+        <%= erb :'comments/_new', locals: { commentable: @question } %>
+      </div>
+
     <% end %>
 
     <% if owns_question?(@question) %>
-			<form method="post", action=" <%= "/questions/#{@question.id}" %>" >
+      <form method="post", action=" <%= "/questions/#{@question.id}" %>" >
           <input type="hidden" name="_method" value="delete">
           <input type="submit" value="Delete question">
       </form>
-	    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
-	  <% end %>
+      <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
+    <% end %>
 
 </div>
 
 
 
 <%= erb :'_errors', local: {errors: @errors} %>
+
 
 <div class="container a">
   <div class="answerDisplay">
@@ -62,6 +74,7 @@
   		<%= erb :'answers/_show', locals: {answer: answer} %>
     </div>
   	<% end %>
+
 
 
   </div>
