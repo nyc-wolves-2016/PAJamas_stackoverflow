@@ -138,7 +138,11 @@ end
 post '/questions/:question_id/comments' do
   @question = Question.find_by(id: params[:question_id])
   @comment = Comment.new(params[:comment])
-  if @comment.save
+  if @comment.save && request.xhr?
+    @question.comments << @comment
+    current_user.comments << @comment
+    erb :'comments/_new', locals: {commentable: @question, comment: @comment }, layout: false
+  elsif @comment.save
     @question.comments << @comment
     current_user.comments << @comment
     redirect "/questions/#{@question.id}"
