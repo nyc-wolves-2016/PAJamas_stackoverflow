@@ -43,25 +43,28 @@ $(document).ready(function() {
   $('.burger_button').on('click', function(event){
     $('.responsive_burger_button').toggleClass('expand')
   });
-  $('.container').submit('.newComment', function(){
+    $('.container').on('submit', '.newCommentButton', function(){
     event.preventDefault();
-    var path = $('.newComment').attr('action');
+    var thisButton = event.target
+    var path = $('.newCommentButton').attr('action');
     $.ajax({
       method: 'get',
       url: path,
     }).done(function(response) {
       $('.commentForm').append(response);
+      $(thisButton).remove();
     });
   });
-   $('.answerDisplay').submit('.newComment', function(){
+   $('.answerDisplay').on('submit', '.newCommentButton', function(){
     event.preventDefault();
-    var path = $('.newComment').attr('action');
+    var path = $('.newCommentButton').attr('action');
     var thisButton = event.target
     $.ajax({
       method: 'get',
       url: path,
     }).done(function(response) {
       $(thisButton).next().append(response);
+      $(thisButton).remove();
     });
 
   });

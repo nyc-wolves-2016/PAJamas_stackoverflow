@@ -21,11 +21,6 @@
       </div>
     </div>
 
-<div class="comment_display">
-  <% @question.comments.each do |comment| %>
-    <%= erb :'comments/_show', locals: { commentable: @question, comment: comment} %>
-  <% end %>
-</div>
 
 
     <div class="comment_display question_comment">
@@ -35,8 +30,9 @@
     </div>
 
 
-    <form class="newComment" method="get" action="/questions/<%=@question.id%>/comments/new">
-    <button type="submit" class="newCommentButton">Add comment</button>
+    <form class="newCommentButton" method="get" action="/questions/<%=@question.id%>/comments/new">
+    <button type="submit">Add comment</button>
+
     </form>
     <div class="commentForm">
     </div>
@@ -48,18 +44,19 @@
     <% end %>
 
     <% if owns_question?(@question) %>
-			<form method="post", action=" <%= "/questions/#{@question.id}" %>" >
+      <form method="post", action=" <%= "/questions/#{@question.id}" %>" >
           <input type="hidden" name="_method" value="delete">
           <input type="submit" value="Delete question">
       </form>
-	    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
-	  <% end %>
+      <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
+    <% end %>
 
 </div>
 
 
 
 <%= erb :'_errors', local: {errors: @errors} %>
+
 
 <div class="container a">
   <div class="answerDisplay">
@@ -77,6 +74,7 @@
   		<%= erb :'answers/_show', locals: {answer: answer} %>
     </div>
   	<% end %>
+
 
 
   </div>
