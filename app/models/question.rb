@@ -10,19 +10,23 @@ class Question < ActiveRecord::Base
   validates :asker_id, presence: true
 
   def has_best_answer?
-    self.answers.any? { |answer| answer.best_status == 1}
+    self.answers.any? { |answer| answer.best_status == 1} if has_answer?
   end
 
   def total_votes
-    self.votes.sum(:value)
+    self.votes.sum(:value) if has_answer?
   end
 
   def last_answer_received
-    (self.answers.last).updated_at.strftime "%Y-%m-%d"
+    (self.answers.last).updated_at.strftime "%Y-%m-%d" if has_answer?
   end
 
   def last_answer_giver
-    (self.answers.last).answerer.username
+    (self.answers.last).answerer.username if has_answer?
+  end
+
+  def has_answer?
+    self.answers.any?
   end
 
 end
