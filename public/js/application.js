@@ -81,6 +81,20 @@ $(document).ready(function() {
       $('.newComment').remove();
     });
    });  
+  $('.answerDisplay').on('submit', '.newComment', function(){
+    event.preventDefault();
+    var path = $(event.target).attr('action');
+    var thisForm = event.target
+    var data = $(event.target).serialize();
+    $.ajax({
+      method: 'post',
+      url: path,
+      data: data,
+    }).done(function(response) {
+      $('.question_comment').append(response);
+      $('.newComment').remove();
+    });
+   }); 
 
 
 
