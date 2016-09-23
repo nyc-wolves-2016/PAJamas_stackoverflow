@@ -1,30 +1,32 @@
 <div class="container q">
-  <h1><%= @question.title %></h1>
-  <h6>Asked by <%= @question.asker.username %> at <%=@question.created_at %></h6>
+  <div class="question_box">
+    <h1><%= @question.title %></h1>
+    <h6>Asked by <%= @question.asker.username %> at <%=@question.created_at %></h6>
 
-    <div class="single_question">
-      <p><%= @question.body %></p>
+      <div class="single_question">
+        <p><%= @question.body %></p>
+      </div>
+      <div class="question_vote_buttons">
+        <% if logged_in? %>
+          <form method="post" action='/questions/<%= @question.id %>/vote'>
+            <input type="hidden" name="vote" value="upvote">
+            <button type="submit" class="vote-up" ></button>
+          </form>
+          <p><%= @question.total_votes %></p>
+          <form method="post" action='/questions/<%= @question.id %>/vote'>
+            <input type="hidden" name="vote" value="downvote">
+            <button type="submit" class="vote-down"></button>
+          </form>
+        <% end %>
+      </div>
     </div>
-    <div class="vote_buttons">
-      <% if logged_in? %>
-        <form method="post" class="vote-up" action='/questions/<%= @question.id %>/vote'>
-          <input type="hidden" name="vote" value="upvote">
-          <button type="submit" ></button>
-        </form>
-        <%= @question.total_votes %>
-        <form method="post" class="vote-down" action='/questions/<%= @question.id %>/vote'>
-          <input type="hidden" name="vote" value="downvote">
-          <button type="submit"></button>
-        </form>
-      <% end %>
-    </div>
+
+<div class="comment_display">
+  <% @question.comments.each do |comment| %>
+    <%= erb :'comments/_show', locals: { commentable: @question, comment: comment} %>
+  <% end %>
 </div>
 
-    <div class="comment_display question_comment">
-      <% @question.comments.each do |comment| %>
-        <%= erb :'comments/_show', locals: { commentable: @question, comment: comment} %>
-      <% end %>
-    </div>
     <% if logged_in? &&!@to_edit %>
 
       <%= erb :'comments/_new', locals: { commentable: @question } %>
@@ -38,22 +40,29 @@
 	    <a href="<%="/questions/#{@question.id}/edit" %>">Update question</a>
 	  <% end %>
 
+</div>
+
+
 
 <%= erb :'_errors', local: {errors: @errors} %>
 
+<div class="container a">
+  <div class="answerDisplay">
+  	<h3>	<%= @question.answers.count %> Answer(s) </h3>
+    <% if logged_in? && !@to_edit  %>
+    <textarea rows="12" cols="80" name="answer[body]" form="newAnswer"></textarea>
+    <form id="newAnswer" action="/questions/<%=@question.id%>/answers" method="post">
+    	<input type="hidden" name="answer[answerer_id]" value="<%=current_user.id%>">
+    	<input type="submit" value="Submit an answer" >
+    </form>
+    <% end %>
 
-<div class="answerDisplay">
-	<h2>	<%= @question.answers.count %> Answer(s) </h2>
+  	<% @question.answers.each do |answer| %>
+    <div class="answer_box">
+  		<%= erb :'answers/_show', locals: {answer: answer} %>
+    </div>
+  	<% end %>
 
-	<% @question.answers.each do |answer| %>
-		<%= erb :'answers/_show', locals: {answer: answer} %>
-	<% end %>
+
+  </div>
 </div>
-
-<% if logged_in? && !@to_edit  %>
-<textarea rows="12" cols="80" name="answer[body]" form="newAnswer"></textarea>
-<form id="newAnswer" action="/questions/<%=@question.id%>/answers" method="post">
-	<input type="hidden" name="answer[answerer_id]" value="<%=current_user.id%>">
-	<input type="submit" >
-</form>
-<% end %>

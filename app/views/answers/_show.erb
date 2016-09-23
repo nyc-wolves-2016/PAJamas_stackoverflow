@@ -1,9 +1,12 @@
 <article id="<%= answer.id %>">
+	<div class="single_answer">
 	<% if @to_edit == answer.id %>
 		<%= erb :'/answers/_edit_answer' %>
 	<% else %>
-		  <span class='username'><%= answer.answerer.username %>: </span>
 			<p><%= answer.body %></p>
+			<h6>Answered by <%= answer.answerer.username %> </h6>
+	</div>
+	<div class="answer_vote_buttons">
 		<% if logged_in? %>
  	  	<form method="post" action='/questions/<%= @question.id %>/answers/<%= answer.id %>/vote'>
  	      <input type="hidden" name="vote" value="upvote">
@@ -14,6 +17,7 @@
  	      <input type="hidden" name="vote" value="downvote">
  	  		<button type="submit" class="vote-down"></button>
  			</form>
+		</div>
  	  <% end %>
 				<% if owns_question?(@question) && !@question.has_best_answer? %>
 				<form id="best_answer" method="post", action="<%="/questions/#{@question.id}/answers/#{answer.id}"%>">
