@@ -7,6 +7,7 @@ post "/comments/:id/vote" do
   end
 
   if request.xhr?
+    binding.pry
     return "#{@comment.total_votes}"
   elsif @comment.commentable_type == "Question"
     redirect "/questions/#{@comment.commentable_id}"

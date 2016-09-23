@@ -17,5 +17,12 @@ class Question < ActiveRecord::Base
     self.votes.sum(:value)
   end
 
+  def last_answer_received
+    (self.answers.last).updated_at.strftime "%Y-%m-%d"
+  end
+
+  def last_answer_giver
+    (self.answers.last).answerer.username
+  end
 
 end

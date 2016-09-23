@@ -14,15 +14,16 @@
       <div class="title"><a href=" <%= "/questions/#{question.id}" %>"><%= question.title %>:</a></p>
     </div>
 
-      <!-- <div class="question_last_update">
-        <div><%= "CREATER A METHOD FOR THIS" %>: </div>
+      <div class="question_last_update">
+        <div><%= question.last_answer_received %>: </div>
         <div>Last Updated:</div>
       </div>
 
       <div class="question_last_update_user">
-        <div><%= "CREATER A METHOD FOR THIS" %>: </div>
+        <div><%= question.last_answer_giver %>: </div>
         <div>Last Update by:</div>
       </div>
-    </div> -->
+    </div>
+
 
 </article>

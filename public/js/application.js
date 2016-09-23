@@ -91,6 +91,7 @@ $(document).ready(function() {
     var thisForm = this;
     var postData = $(this).serialize();
     var path = $(this).closest('form').attr("action");
+    alert(path);
   $.ajax({
     url: path,
     method: "post"
@@ -104,6 +105,7 @@ $(document).ready(function() {
     var thisForm = this;
     var postData = $(this).serialize();
     var path = $(this).closest('form').attr("action");
+    console.log(path);
   $.ajax({
     url: path,
     method: "post"
