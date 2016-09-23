@@ -63,6 +63,7 @@ $(document).ready(function() {
       method: 'get',
       url: path,
     }).done(function(response) {
+      debugger;
       $(thisButton).next().append(response);
       $(thisButton).remove();
     });
