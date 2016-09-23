@@ -23,6 +23,7 @@
       <ul>
         <li>Welcome!</li>
         <li><a href='/'>Home</a></li>
+        <li><a href='/questions/new'>Ask a Question</a></li>
         <% if logged_in? %>
         <li><a href='/users/:id'><%= current_user.username %></a></li>
         <li><a href='/sessions/logout'>Logout</a></li>
@@ -37,10 +38,13 @@
             <li class="sub_menu"><%= erb :'sessions/_login_form' %></li>
           </ul>
         </li>
+
         <% end %>
       </ul>
     </nav>
-    <h1>PajamasOverflow</h1>
+    <div class="layout">
+      <h1>PajamasOverflow</h1>
+    </div>
   <%= yield %>
 </body>
 </html>

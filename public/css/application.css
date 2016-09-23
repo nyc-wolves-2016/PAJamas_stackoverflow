@@ -5,8 +5,8 @@ body {
 }
 
 nav {
+  width: 900px;
   float: right;
-  width: 100%;
   background-color: black;
 }
 nav ul {
@@ -15,7 +15,6 @@ nav ul {
 }
 
 li {
-  width: 100%;
   line-height: 1.5em;
   margin-left: 10px;
   margin-right: 10px;
@@ -38,10 +37,11 @@ li a:hover + ul {
 }
 
 
-h1 {
+.layout h1 {
+  width: 900px;
   clear: right;
   margin: 0 auto;
-  padding: 100px 0px 100px 40px;
+  padding: 100px 0px 100px 0px;
   background-color: #ffff00;
   display: block;
   font-family: times, Times New Roman, times-roman, georgia, serif;
@@ -59,7 +59,7 @@ h1 {
 .container {
   margin: 20px auto;
   width: 900px;
-  padding: 20px 0px 20px 40px;
+  padding: 20px 0px 20px ;
   background-color: #faebd7;
   border-radius: 10px;
 
