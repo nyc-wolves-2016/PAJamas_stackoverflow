@@ -7,8 +7,12 @@ body {
 nav {
   width: 900px;
   float: right;
-  background-color: black;
+  background-color: #b6fcd5;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 5px;
 }
+
 nav ul {
   list-style: none;
   /*padding-left: 40%;*/
@@ -36,19 +40,29 @@ li a:hover + ul {
   margin-right: auto;
 }
 
+h5 {
+  font-size: 12px;
+}
 
-.layout h1 {
+.layout {
   width: 900px;
   clear: right;
   margin: 0 auto;
   padding: 100px 0px 100px 0px;
   background-color: #ffff00;
   display: block;
+  border-radius: 10px;
+
+
+}
+
+.layout h1 {
+  width: 500px;
+  padding-left: 40px;
   font-family: times, Times New Roman, times-roman, georgia, serif;
   font-size: 48px;
   line-height: 40px;
   letter-spacing: -1px;
-  border-radius: 10px;
 }
 
 .expand {
@@ -59,7 +73,7 @@ li a:hover + ul {
 .container {
   margin: 20px auto;
   width: 900px;
-  padding: 20px 0px 20px ;
+  padding: 20px 20px 0px 40px ;
   background-color: #faebd7;
   border-radius: 10px;
 

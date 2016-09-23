@@ -15,13 +15,8 @@
     </div>
 
       <div class="question_last_update">
-        <div><%= question.last_answer_received %>: </div>
-        <div>Last Updated:</div>
+        <h5>Last updated by <%= question.last_answer_giver %> on <%= question.last_answer_received %></h5>
       </div>
 
-      <div class="question_last_update_user">
-        <div><%= question.last_answer_giver %>: </div>
-        <div>Last Update by:</div>
-      </div>
-    </div>
+
 </article>
