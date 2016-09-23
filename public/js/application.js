@@ -57,7 +57,7 @@ $(document).ready(function() {
   });
    $('.answerDisplay').on('submit', '.newCommentButton', function(){
     event.preventDefault();
-    var path = $('.newCommentButton').attr('action');
+    var path = $(event.target).attr('action');
     var thisButton = event.target
     $.ajax({
       method: 'get',

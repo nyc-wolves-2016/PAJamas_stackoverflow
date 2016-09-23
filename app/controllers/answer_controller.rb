@@ -12,7 +12,7 @@ end
 post '/answers/:answer_id/comments' do
 
   @answer = Answer.find_by(id: params[:answer_id])
-  @answer = @answer.question
+  @question = @answer.question
   @comment = Comment.new(params[:comment])
   if @comment.save
     @answer.comments << @comment
